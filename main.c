@@ -10,4 +10,3 @@ int main(void) {
 	printf("Item: %d\n", numbers.get(&numbers, 0));
 	return 0;
 }
-

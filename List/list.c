@@ -10,7 +10,7 @@ static Node *create_node(int32 item) {
 	return node;
 }
 
- 
+
 static void
 imp_append(List *list, int32 item) {
   Node **node = &(list->root_node);
