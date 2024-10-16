@@ -25,8 +25,8 @@ imp_append(List *list, int32 item) {
 	} else {
 		(*(list->cache.last_node))->next_node = create_node(item);
 		list->cache.last_node = &(
-			(*(list->cache.last_node)
-		)->next_node);
+			(*(list->cache.last_node))->next_node
+		);
 	}
 	list->len++;
 	return SUCCESSFULLY;
