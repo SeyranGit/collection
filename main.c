@@ -6,7 +6,7 @@ static void
 test(List *list) {
 	clear_list(list);
 	print_list(list);
-	for (int32 i = 0; i < 15000000; i++) {
+	for (int32 i = 0; i < 20000000; i++) {
 		list->append(list, i);
 	}
 	puts("[OK]");

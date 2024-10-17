@@ -27,7 +27,7 @@ typedef struct cache {
 typedef struct list {
 	Node *root_node;
 	Cache cache;
-	int32 len;
+	unsigned int32 len;
 
 	int32 (*get)(struct list *list, int32 index);
 	error_code (*append)(struct list *list, int32 item);
