@@ -3,6 +3,9 @@
 #include "list.h"
 
 
+#define LIST_CACHE(list_obj) list_obj->cache.last_node
+
+
 static Node
 *create_node(int32 item) {
 	Node *node = malloc(sizeof(Node));
@@ -15,17 +18,17 @@ static Node
 static error_code
 imp_append(List *list, int32 item) {
 	if (!list->cache.last_node) {
-		list->cache.last_node = &(list->root_node);
-		while (*(list->cache.last_node)) {
-			list->cache.last_node = &(
-				(*(list->cache.last_node))->next_node
+		LIST_CACHE(list) = &(list->root_node);
+		while (*(LIST_CACHE(list))) {
+			LIST_CACHE(list) = &(
+				(*(LIST_CACHE(list)))->next_node
 			);
 		}
-		*(list->cache.last_node) = create_node(item);
+		*(LIST_CACHE(list)) = create_node(item);
 	} else {
-		(*(list->cache.last_node))->next_node = create_node(item);
-		list->cache.last_node = &(
-			(*(list->cache.last_node))->next_node
+		(*(LIST_CACHE(list)))->next_node = create_node(item);
+		LIST_CACHE(list) = &(
+			(*(LIST_CACHE(list)))->next_node
 		);
 	}
 	list->len++;
