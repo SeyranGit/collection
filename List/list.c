@@ -86,7 +86,7 @@ imp_get(List *list, uint32 index) {
        current_index++) {
     node = node->next_node;
   }
-  return 0;
+  return node->item;
 }
 
 

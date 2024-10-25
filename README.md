@@ -25,7 +25,7 @@ int main(void) {
   numbers.insert(&numbers, 0, 22);
   print_list(&numbers);
   printf("Item: %d\n", numbers.get(&numbers, 1));
-  clear_list(&number);
+  clear_list(&numbers);
 
   return 0;
 }
@@ -37,6 +37,6 @@ int main(void) {
 ```
 [10, 20, 30]
 [10, 30]
-[10, 22, 30]
-Item: 22
+[22, 10, 30]
+Item: 10
 ```
