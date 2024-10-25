@@ -1,4 +1,4 @@
-# Implementation of List data structures in C
+# Implementation of a singly linked list data structure in C
 
 ```
   _       _    ____    _____  
