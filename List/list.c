@@ -75,16 +75,17 @@ imp_insert(List *list, uint32 index, int32 item) {
 
 static int32
 imp_get(List *list, uint32 index) {
-  uint32 current_index = (uint32)0;
-  Node *node = list->root_node;
-  while (node) {
-    if (index == current_index) {
-      return node->item;
-    }
-    node = node->next_node;
-    current_index++;
+  Node *node;
+  if (index >= list->len) {
+    printf("Exception: Index %u is out of range.\n", index);
+    return 0;
   }
-  printf("Exception: Index %u is out of range.\n", index);
+  node = list->root_node;
+  for (uint32 current_index = 0; 
+       current_index < index; 
+       current_index++) {
+    node = node->next_node;
+  }
   return 0;
 }
 
@@ -133,7 +134,7 @@ clear_list(List *list) {
 }
 
 
-List 
+List
 new_list(void) {
   List list;
   Cache cache;
