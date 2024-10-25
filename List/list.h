@@ -2,8 +2,10 @@
 #define LIST_H
 
 
-#define int32 __int32
-#define int8  __int8
+#define int32 int
+#define int8 char
+#define uint32 unsigned int
+#define uint8 unsigned char
 
 #define SUCCESSFULLY 0
 #define OUT_OF_RANGE 1
@@ -27,12 +29,12 @@ typedef struct cache {
 typedef struct list {
   Node *root_node;
   Cache cache;
-  unsigned int32 len;
+  uint32 len;
 
-  int32 (*get)(struct list *list, int32 index);
+  int32 (*get)(struct list *list, uint32 index);
   error_code (*append)(struct list *list, int32 item);
-  error_code (*remove)(struct list *list, int32 index);
-  error_code (*insert)(struct list *list, int32 index, int32 item);
+  error_code (*remove)(struct list *list, uint32 index);
+  error_code (*insert)(struct list *list, uint32 index, int32 item);
 } List;
 
 

@@ -37,30 +37,45 @@ imp_append(List *list, int32 item) {
 
 
 static error_code
-imp_insert(List *list, int32 index, int32 item) {
-  int32 current_index = 0;
+imp_insert(List *list, uint32 index, int32 item) {
+  uint32 current_index = (uint32)1;
   Node *node = list->root_node;
   Node *temp_node = NULL;
   Node *new_node = NULL;
-  while (node) {
-    if (index == current_index) {
+  if (!node) {
+    return list->append(list, item);
+  }
+  else {
+    if (index == 0) {
       new_node = create_node(item);
-      temp_node = node->next_node;
-      node->next_node = new_node;
-      new_node->next_node = temp_node;
+      list->root_node = new_node;
+      list->len++;
+      new_node->next_node = node;
       return SUCCESSFULLY;
     }
-    node = node->next_node;
-    current_index++;
+    else {
+      while (node) {
+        if (index == current_index) {
+          new_node = create_node(item);
+          temp_node = node->next_node;
+          node->next_node = new_node;
+          new_node->next_node = temp_node;
+          list->len++;
+          return SUCCESSFULLY;
+        }
+        node = node->next_node;
+        current_index++;
+      }
+    }
   }
-  printf("Exception: Index %d is out of range.\n", index);
-  return OUT_OF_RANGE; 
+  printf("Exception: Index %u is out of range.\n", index);
+  return OUT_OF_RANGE;
 }
 
 
 static int32
-imp_get(List *list, int32 index) {
-  int32 current_index = 0;
+imp_get(List *list, uint32 index) {
+  uint32 current_index = (uint32)0;
   Node *node = list->root_node;
   while (node) {
     if (index == current_index) {
@@ -69,14 +84,14 @@ imp_get(List *list, int32 index) {
     node = node->next_node;
     current_index++;
   }
-  printf("Exception: Index %d is out of range.\n", index);
+  printf("Exception: Index %u is out of range.\n", index);
   return 0;
 }
 
 
 static error_code
-imp_remove(List *list, int32 index) {
-  int32 current_index = 0;
+imp_remove(List *list, uint32 index) {
+  uint32 current_index = (uint32)0;
   Node *node = list->root_node;
   Node *previus_node = NULL;
   while (node) {
@@ -102,6 +117,22 @@ imp_remove(List *list, int32 index) {
 }
 
 
+error_code
+clear_list(List *list) {
+  Node *current_node = list->root_node;
+  Node *temp_node = NULL;
+  while (current_node) {
+    temp_node = current_node->next_node;
+    free(current_node);
+    current_node = temp_node;
+  }
+  list->len = 0;
+  list->root_node = NULL;
+  list->cache.last_node = NULL;
+  return SUCCESSFULLY;
+}
+
+
 List 
 new_list(void) {
   List list;
@@ -116,21 +147,6 @@ new_list(void) {
   list.get = imp_get;
 
   return list;
-}
-
-
-error_code
-clear_list(List *list) {
-  Node *current_node = list->root_node;
-  Node *temp_node = NULL;
-  while (current_node) {
-    temp_node = current_node->next_node;
-    free(current_node);
-    current_node = temp_node;
-  }
-  list->root_node = NULL;
-  list->cache.last_node = NULL;
-  return SUCCESSFULLY;
 }
 
 
