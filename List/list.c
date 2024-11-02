@@ -3,15 +3,18 @@
 #include "list.h"
 
 
-#define LIST_CACHE(list_obj) list_obj->cache.last_node
+#define LIST_CACHE(list) list->cache.last_node
 
 
 static Node
 *create_node(int32 item) {
   Node *node = malloc(sizeof(Node));
-  node->item = item;
-  node->next_node = NULL;
-  return node;
+  if (node) {
+    node->item = item;
+    node->next_node = NULL;
+    return node;
+  }
+  return NULL;
 }
 
 
@@ -68,7 +71,7 @@ imp_insert(List *list, uint32 index, int32 item) {
       }
     }
   }
-  printf("Exception: Index %u is out of range.\n", index);
+  fprintf(stderr, "Exception: Index %u is out of range.\n", index);
   return OUT_OF_RANGE;
 }
 
@@ -77,7 +80,7 @@ static int32
 imp_get(List *list, uint32 index) {
   Node *node;
   if (index >= list->len) {
-    printf("Exception: Index %u is out of range.\n", index);
+    fprintf(stderr, "Exception: Index %u is out of range.\n", index);
     return 0;
   }
   node = list->root_node;
@@ -94,11 +97,11 @@ static error_code
 imp_remove(List *list, uint32 index) {
   uint32 current_index = (uint32)0;
   Node *node = list->root_node;
-  Node *previus_node = NULL;
+  Node *previous_node = NULL;
   while (node) {
     if (index == current_index) {
-      if (previus_node) {
-        previus_node->next_node = node->next_node;
+      if (previous_node) {
+        previous_node->next_node = node->next_node;
       } else {
         if (node->next_node) {
           list->root_node = node->next_node;
@@ -110,7 +113,7 @@ imp_remove(List *list, uint32 index) {
       free(node);
       return SUCCESSFULLY;
     }
-    previus_node = node;
+    previous_node = node;
     node = node->next_node;
     current_index++;
   }
@@ -136,17 +139,15 @@ clear_list(List *list) {
 
 List
 new_list(void) {
-  List list;
-  Cache cache;
-  cache.last_node = NULL;
-  list.root_node = NULL;
-  list.cache = cache;
-  list.len = 0;
+  List list = {
+    .root_node = NULL,
+    .len = 0,
+    .cache = { .last_node = NULL }
+  };
   list.append = imp_append;
   list.remove = imp_remove;
   list.insert = imp_insert;
   list.get = imp_get;
-
   return list;
 }
 
