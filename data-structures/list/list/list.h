@@ -2,6 +2,13 @@
 #define LIST_H
 
 
+#ifndef __GNUC__
+  #define NORETURN __attribute__((noreturn))
+#else
+  #define NORETURN
+#endif
+
+
 #define int32 int
 #define int8 char
 #define uint32 unsigned int

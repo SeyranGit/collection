@@ -1,20 +1,29 @@
 #include <malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "list.h"
 
 
-#define LIST_CACHE(list) list->cache.last_node
+#define LIST_CACHE(list) ((list)->cache.last_node)
+
+ 
+NORETURN static inline void
+exit_and_clear_list(List* list) {
+  clear_list(list);
+  exit(EXIT_FAILURE);
+}
 
 
 static Node
 *create_node(int32 item) {
   Node *node = malloc(sizeof(Node));
-  if (node) {
-    node->item = item;
-    node->next_node = NULL;
-    return node;
-  }
-  return NULL;
+  if (!node) {
+    fprintf(stderr, "Memory allocation failed\n");
+    exit(EXIT_FAILURE);
+  }  
+  node->item = item;
+  node->next_node = NULL;
+  return node;
 }
 
 
@@ -72,7 +81,7 @@ imp_insert(List *list, uint32 index, int32 item) {
     }
   }
   fprintf(stderr, "Exception: Index %u is out of range.\n", index);
-  return OUT_OF_RANGE;
+  exit_and_clear_list(list);
 }
 
 
@@ -81,7 +90,7 @@ imp_get(List *list, uint32 index) {
   Node *node;
   if (index >= list->len) {
     fprintf(stderr, "Exception: Index %u is out of range.\n", index);
-    return 0;
+    exit_and_clear_list(list);
   }
   node = list->root_node;
   for (uint32 current_index = 0; 
@@ -117,7 +126,8 @@ imp_remove(List *list, uint32 index) {
     node = node->next_node;
     current_index++;
   }
-  return OUT_OF_RANGE;
+  fprintf(stderr, "Exception: Index %u is out of range.\n", index);
+  exit_and_clear_list(list);
 }
 
 
@@ -157,11 +167,8 @@ print_list(List *list) {
   Node *node = list->root_node;
   printf("[");
   while (node) {
-    if (node->next_node) {
-      printf("%d, ", node->item);
-    } else {
-      printf("%d", node->item);
-    }
+    printf("%d", node->item);
+    if (node->next_node) printf(", ");
     node = node->next_node;
   }
   printf("]\n");

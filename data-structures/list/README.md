@@ -1,8 +1,4 @@
-### This repository is a collection of mini-programs that I write in my free time
-
-Basically, data structures and interesting small applications will be stored here. A singly linked list data structure has already been implemented.
-
----
+# Implementation of a singly linked list data structure in C
 
 ```
   _       _    ____    _____  
