@@ -2,7 +2,6 @@
 #define LIST_H
 
 
-
 #ifndef __GNUC__
   #define NORETURN __attribute__((noreturn))
 #else
