@@ -7,7 +7,7 @@
 #define LIST_CACHE(list) ((list)->cache.last_node)
 
  
-NORETURN static inline void
+NORETURN static void
 exit_and_clear_list(List* list) {
   clear_list(list);
   exit(EXIT_FAILURE);
