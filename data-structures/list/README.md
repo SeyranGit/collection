@@ -11,7 +11,7 @@
 * Usage example
 ```c
 #include <stdio.h>
-#include "List/list.h"
+#include "list/list.h"
 
 int main(void) {
   List numbers = new_list(); 
