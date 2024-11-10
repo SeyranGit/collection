@@ -5,7 +5,7 @@
 #define xor ^
 #define or  |
 
-#define FSTD(upto) (byte index = 0; index < upto; index++)
+#define FSTD(iter_count) (byte index = 0; index < iter_count; index++)
 
 #define __XOR(bita, bitb)               (bita xor bitb)
 #define SUM(bita, bitb, carry_in)       (__XOR(bita, bitb) xor carry_in)
