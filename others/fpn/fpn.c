@@ -1,5 +1,5 @@
 
-int printf(char const* const format, ...);  // or do include <stdio.h>
+extern int printf(char const* const format, ...);  // or do include <stdio.h>
 
 
 #define EXTRACT_BITS(value, shift, mask) (((value) >> (shift)) & (mask))
@@ -50,8 +50,12 @@ static float compose(const IEEEFloat *ieee_float) {
 
 
 static u32 perform_operation(IEEEFloat *n1, IEEEFloat *n2, u8 exp, char op) {
-  u32 max_mantissa = max_attr_ptr(n1, n2, exponent)->mantissa;
-  u32 min_mantissa = min_attr_ptr(n1, n2, exponent)->mantissa >> (exp - min(n1->exponent, n2->exponent));
+  u32 max_mantissa = n1->mantissa;
+  u32 min_mantissa = n2->mantissa;
+  if (n1->exponent != n2->exponent) {
+    max_mantissa = max_attr_ptr(n1, n2, exponent)->mantissa;
+    min_mantissa = min_attr_ptr(n1, n2, exponent)->mantissa >> (exp - min(n1->exponent, n2->exponent));
+  }  
   return (op == '+') ? (max_mantissa + min_mantissa) : (max_mantissa - min_mantissa);
 }
 
@@ -101,7 +105,7 @@ static float ieee_add(float num1, float num2) {
 
 int main(void) {
   float result = 0;
-  result = ieee_add(5.75f, 5.75f);
+  result = ieee_add(732.732423f, -5.075f);
   printf("%f\n", (double)result);
   return 0;
 }
