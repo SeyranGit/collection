@@ -101,10 +101,7 @@ static float ieee_add(float num1, float num2) {
 
 int main(void) {
   float result = 0;
-  for (u32 i = 0; i <= 100000000; i++) {
-    result = ieee_add(5.75f, 5.75f);
-    // result = 5.75f + 5.75f;
-  }
+  result = ieee_add(5.75f, 5.75f);
   printf("%f\n", (double)result);
   return 0;
 }
