@@ -7,13 +7,11 @@
 
 #define FSTD(iter_count) (byte index = 0; index < iter_count; index++)
 
-#define __XOR(bita, bitb)               (bita xor bitb)
-#define SUM(bita, bitb, carry_in)       (__XOR(bita, bitb) xor carry_in)
-#define CARRY_OUT(bita, bitb, carry_in) ((bita and bitb) or (__XOR(bita, bitb) and carry_in))
+#define SUM(bita, bitb, carry_in)       ((bita xor bitb) xor carry_in)
+#define CARRY_OUT(bita, bitb, carry_in) ((bita and bitb) or ((bita xor bitb) and carry_in))
 
 
 typedef char byte;
-typedef unsigned char ubyte;
 
 
 static byte fa(byte num1, byte num2, byte carry_in) {
