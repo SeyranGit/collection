@@ -3,11 +3,11 @@ extern int printf(char const* const format, ...);  // or do include <stdio.h>
 
 
 #define EXTRACT_BITS(value, shift, mask) (((value) >> (shift)) & (mask))
-#define max(a, b)                ((a) > (b) ? (a) : (b))
-#define min(a, b)                ((a) < (b) ? (a) : (b))
-#define max_attr(a, b, attr)     (a.attr > b.attr ? a : b)
-#define max_attr_ptr(a, b, attr) (a->attr > b->attr ? a : b)
-#define min_attr_ptr(a, b, attr) (a->attr < b->attr ? a : b)
+#define max(a, b)                        ((a) > (b) ? (a) : (b))
+#define min(a, b)                        ((a) < (b) ? (a) : (b))
+#define max_attr(a, b, attr)             (a.attr > b.attr ? a : b)
+#define max_attr_ptr(a, b, attr)         (a->attr > b->attr ? a : b)
+#define min_attr_ptr(a, b, attr)         (a->attr < b->attr ? a : b)
 
 
 typedef unsigned char u8;
