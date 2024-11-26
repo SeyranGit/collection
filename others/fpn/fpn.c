@@ -104,7 +104,7 @@ static float ieee_add(float num1, float num2) {
 
 
 int main(void) {
-  float result = 0;
+  float result;
   result = ieee_add(732.732423f, -5.075f);
   printf("%f\n", (double)result);
   return 0;
