@@ -47,7 +47,7 @@ Item: 10
 
 ### Build
 ___
-If you don't have LLVM installed, you need to install it from the following link: [LLVM](https://github.com/llvm/llvm-project/releases/tag/llvmorg-19.1.0). Once installed, you can clone the repositories and enter the following command in the terminal if you are using Windows:
+If you don't have LLVM installed, you need to install it from the following link: [LLVM](https://github.com/llvm/llvm-project/releases/). Once installed, you can clone the repositories and enter the following command in the terminal if you are using Windows:
 ```
 build
 ```
