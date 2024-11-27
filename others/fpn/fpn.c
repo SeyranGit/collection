@@ -54,7 +54,11 @@ static u32 perform_operation(IEEEFloat *n1, IEEEFloat *n2, u8 exp, char op) {
   u32 min_mantissa = n2->mantissa;
   if (n1->exponent != n2->exponent) {
     max_mantissa = max_attr_ptr(n1, n2, exponent)->mantissa;
-    min_mantissa = min_attr_ptr(n1, n2, exponent)->mantissa >> (exp - min(n1->exponent, n2->exponent));
+    min_mantissa = (
+      min_attr_ptr(n1, n2, exponent)->mantissa >> (
+        exp - min(n1->exponent, n2->exponent)
+      )
+    );
   }  
   return (op == '+') ? (max_mantissa + min_mantissa) : (max_mantissa - min_mantissa);
 }
