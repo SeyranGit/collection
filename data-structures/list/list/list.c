@@ -152,7 +152,9 @@ new_list(void) {
   List list = {
     .root_node = NULL,
     .len = 0,
-    .cache = { .last_node = NULL }
+    .cache = {
+      .last_node = NULL
+    }
   };
   list.append = imp_append;
   list.remove = imp_remove;
