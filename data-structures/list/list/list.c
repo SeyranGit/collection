@@ -14,8 +14,7 @@ exit_and_clear_list(List* list) {
 }
 
 
-static Node
-*create_node(int32 item) {
+static Node *create_node(int32 item) {
   Node *node = malloc(sizeof(Node));
   if (!node) {
     fprintf(stderr, "Memory allocation failed\n");
@@ -27,8 +26,7 @@ static Node
 }
 
 
-static error_code
-imp_append(List *list, int32 item) {
+static error_code imp_append(List *list, int32 item) {
   if (!list->cache.last_node) {
     LIST_CACHE(list) = &(list->root_node);
     while (*(LIST_CACHE(list))) {
@@ -48,8 +46,7 @@ imp_append(List *list, int32 item) {
 }
 
 
-static error_code
-imp_insert(List *list, uint32 index, int32 item) {
+static error_code imp_insert(List *list, uint32 index, int32 item) {
   uint32 current_index = (uint32)1;
   Node *node = list->root_node;
   Node *temp_node = NULL;
@@ -85,8 +82,7 @@ imp_insert(List *list, uint32 index, int32 item) {
 }
 
 
-static int32
-imp_get(List *list, uint32 index) {
+static int32 imp_get(List *list, uint32 index) {
   Node *node;
   if (index >= list->len) {
     fprintf(stderr, "Exception: Index %u is out of range.\n", index);
@@ -102,8 +98,7 @@ imp_get(List *list, uint32 index) {
 }
 
 
-static error_code
-imp_remove(List *list, uint32 index) {
+static error_code imp_remove(List *list, uint32 index) {
   uint32 current_index = (uint32)0;
   Node *node = list->root_node;
   Node *previous_node = NULL;
@@ -131,8 +126,7 @@ imp_remove(List *list, uint32 index) {
 }
 
 
-error_code
-clear_list(List *list) {
+error_code clear_list(List *list) {
   Node *current_node = list->root_node;
   Node *temp_node = NULL;
   while (current_node) {
@@ -147,8 +141,7 @@ clear_list(List *list) {
 }
 
 
-List
-new_list(void) {
+List new_list(void) {
   List list = {
     .root_node = NULL,
     .len = 0,
@@ -164,8 +157,7 @@ new_list(void) {
 }
 
 
-void 
-print_list(List *list) {
+void print_list(List *list) {
   Node *node = list->root_node;
   printf("[");
   while (node) {
