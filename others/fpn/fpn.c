@@ -28,7 +28,7 @@ typedef struct {
 
 
 static void analyze(IEEEFloat *ieee_float, float num) {
-  u32 *pnum = (u32*)(&num);
+  register u32 *pnum = (u32*)(&num);
   ieee_float->sign = (u8)EXTRACT_BITS((*pnum), 31, IEEE_754_SIGN32);
   ieee_float->exponent = (u8)EXTRACT_BITS((*pnum), 23, IEEE_754_EXPONENT32);
   ieee_float->mantissa = (u32)EXTRACT_BITS((*pnum), 0, IEEE_754_MANTISSA32);
@@ -50,8 +50,8 @@ static float compose(const IEEEFloat *ieee_float) {
 
 
 static u32 perform_operation(IEEEFloat *n1, IEEEFloat *n2, u8 exp, char op) {
-  u32 max_mantissa = n1->mantissa;
-  u32 min_mantissa = n2->mantissa;
+  register u32 max_mantissa = n1->mantissa;
+  register u32 min_mantissa = n2->mantissa;
   if (n1->exponent != n2->exponent) {
     max_mantissa = max_attr_ptr(n1, n2, exponent)->mantissa;
     min_mantissa = (
