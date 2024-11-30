@@ -107,9 +107,17 @@ static float ieee_add(float num1, float num2) {
 }
 
 
+static float ieee_sub(float num1, float num2) {
+  return (-1) * ieee_add(-num1, num2);
+}
+
+
 int main(void) {
-  float result;
-  result = ieee_add(732.732423f, -5.075f);
-  printf("%f\n", (double)result);
+  float result_add;
+  float result_sub;
+  result_add = ieee_add(732.732423f, -5.075f);
+  result_sub = ieee_sub(-732.732423f, 5.075f);
+  printf("%f\n", (double)result_add);
+  printf("%f\n", (double)result_sub);
   return 0;
 }
