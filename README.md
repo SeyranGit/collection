@@ -1,6 +1,8 @@
 ### This repository is a collection of mini-programs that I write in my free time
 
-- [x] Hello
+- [x] List Data Struct
+- [x] Full Adder
+- [x] Floating Point Arithmetic
 
 ---
 
