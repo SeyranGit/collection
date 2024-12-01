@@ -1,4 +1,4 @@
-### This repository is a collection of mini-programs that I write in my free time
+# This repository is a collection of mini-programs that I write in my free time
 
 - [x] List Data Struct
 - [x] Full Adder
@@ -6,7 +6,7 @@
 
 ---
 
-```
+```text
   _       _    ____    _____  
  | |     | |  | ___|  |_   _| 
  | |     | |  |___ \    | |   
@@ -14,7 +14,8 @@
  |_|__|  |_|  |____/    |_|   
 ```
 
-* Usage example
+## Usage example
+
 ```c
 #include <stdio.h>
 #include "list/list.h"
@@ -26,7 +27,7 @@ int main(void) {
   numbers.append(&numbers, 30);
 
   print_list(&numbers);
-  numbers.remove(&numbers, 1);	
+  numbers.remove(&numbers, 1);
   print_list(&numbers);
   numbers.insert(&numbers, 0, 22);
   print_list(&numbers);
@@ -38,20 +39,19 @@ int main(void) {
 
 ```
 
+## Output
 
-* Output
-```
+```text
 [10, 20, 30]
 [10, 30]
 [22, 10, 30]
 Item: 10
 ```
 
-### Build
-___
-If you don't have LLVM installed, you need to install it from the following link: [LLVM](https://github.com/llvm/llvm-project/releases/). Once installed, you can clone the repositories and enter the following command in the terminal if you are using Windows:
-```
+## Build
+
+If you don't have LLVM installed, you need to install it from the following link: [LLVM](https://github.com/llvm/llvm-project/releases/). You may need to add the path to "../LLVM/bin" to your environment variable. Once installed, you can clone the repositories and enter the following command in the terminal if you are using Windows:
+
+```text
 build
 ```
-
-*Note: you may have to add the path to "../LLVM/bin" to your environment variable*
