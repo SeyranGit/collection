@@ -1,6 +1,6 @@
 # This repository is a collection of mini-programs
 
-- [x] List Data Struct
+- [x] List Data Structure
 - [x] Full Adder
 - [x] Floating Point Arithmetic
 
