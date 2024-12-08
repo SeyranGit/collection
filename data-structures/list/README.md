@@ -1,6 +1,6 @@
 # Implementation of a singly linked list data structure in C
 
-```
+```text
   _       _    ____    _____  
  | |     | |  | ___|  |_   _| 
  | |     | |  |___ \    | |   
@@ -29,12 +29,10 @@ int main(void) {
 
   return 0;
 }
-
 ```
-
 
 * Output
-```
+```text
 [10, 20, 30]
 [10, 30]
 [22, 10, 30]
