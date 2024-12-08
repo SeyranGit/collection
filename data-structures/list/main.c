@@ -14,7 +14,7 @@ static void test(List *list) {
   for (int32 i = 0; i < 20; i++) {
     list->append(list, i);
   }
-  list->insert(list, (unsigned int32)0, 10);
+  list->insert(list, (uint32)0, 10);
   list->insert(list, list->len, 10);
   print_list(list);
   printf("Len: %u\n", list->len);

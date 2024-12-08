@@ -26,8 +26,8 @@ static Node *create_node(int32 item) {
 }
 
 
-static error_code imp_append(List *list, int32 item) {
-  if (!list->cache.last_node) {
+static error_code append_impl(List *list, int32 item) {
+  if (!list->cache.last_node || list->len == 0) {
     LIST_CACHE(list) = &(list->root_node);
     while (*(LIST_CACHE(list))) {
       LIST_CACHE(list) = &(
@@ -46,7 +46,7 @@ static error_code imp_append(List *list, int32 item) {
 }
 
 
-static error_code imp_insert(List *list, uint32 index, int32 item) {
+static error_code insert_impl(List *list, uint32 index, int32 item) {
   uint32 current_index = (uint32)1;
   Node *node = list->root_node;
   Node *temp_node = NULL;
@@ -82,7 +82,7 @@ static error_code imp_insert(List *list, uint32 index, int32 item) {
 }
 
 
-static int32 imp_get(List *list, uint32 index) {
+static int32 get_impl(List *list, uint32 index) {
   Node *node;
   if (index >= list->len) {
     fprintf(stderr, "Exception: Index %u is out of range.\n", index);
@@ -98,7 +98,7 @@ static int32 imp_get(List *list, uint32 index) {
 }
 
 
-static error_code imp_remove(List *list, uint32 index) {
+static error_code remove_impl(List *list, uint32 index) {
   uint32 current_index = (uint32)0;
   Node *node = list->root_node;
   Node *previous_node = NULL;
@@ -149,10 +149,10 @@ List new_list(void) {
       .last_node = NULL
     }
   };
-  list.append = imp_append;
-  list.remove = imp_remove;
-  list.insert = imp_insert;
-  list.get = imp_get;
+  list.append = append_impl;
+  list.remove = remove_impl;
+  list.insert = insert_impl;
+  list.get = get_impl;
   return list;
 }
 
