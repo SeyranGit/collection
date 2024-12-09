@@ -3,15 +3,6 @@
 
 #include "../../list/list/list.h"
 
-typedef char int8;
-typedef int int32;
-typedef unsigned char uint8;
-typedef unsigned int uint32;
-
-
-typedef int8 error_code;
-
-
 #define SUCCESSFULLY (int8)0
 #define OUT_OF_RANGE (int8)1
 
