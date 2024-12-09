@@ -3,9 +3,6 @@
 
 #include "../../list/list/list.h"
 
-#define SUCCESSFULLY (int8)0
-#define OUT_OF_RANGE (int8)1
-
 
 typedef struct stack {
   List inner_list;
