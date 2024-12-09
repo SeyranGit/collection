@@ -1,4 +1,3 @@
-#include "../../list/list/list.h"
 #include "stack.h"
 
 
