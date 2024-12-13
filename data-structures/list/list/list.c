@@ -61,8 +61,7 @@ static error_code insert_impl(List *list, uint32 index, int32 item) {
       list->len++;
       new_node->next_node = node;
       return SUCCESSFULLY;
-    }
-    else {
+    } else {
       while (node) {
         if (index == current_index) {
           new_node = create_node(item);
