@@ -29,7 +29,7 @@ int main(void) {
   numbers.append(&numbers, 30);
 
   print_list(&numbers);
-  numbers.remove(&numbers, 1);	
+  numbers.remove(&numbers, 1);
   print_list(&numbers);
   numbers.insert(&numbers, 0, 22);
   print_list(&numbers);
