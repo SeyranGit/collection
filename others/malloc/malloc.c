@@ -14,31 +14,31 @@ static void *malloc(unsigned long long size) {
 
 int main(void) {
   typedef struct test {
-		int a;
-		int b;
-		int c;
-		int d;
-		int a1;
-		int b1;
-		int c1;
-		int d1;
-		int a2;
-		int b2;
-		int c2;
-		int d2;
-		int _a;
-		int _b;
-		int _c;
-		int _d;
-		int _a1;
-		int _b1;
-		int _c1;
-		int _d1;
-		int _a2;
-		int _b2;
-		int _c2;
-		int _d2;
-	} TestStruct;
+    int a;
+    int b;
+    int c;
+    int d;
+    int a1;
+    int b1;
+    int c1;
+    int d1;
+    int a2;
+    int b2;
+    int c2;
+    int d2;
+    int _a;
+    int _b;
+    int _c;
+    int _d;
+    int _a1;
+    int _b1;
+    int _c1;
+    int _d1;
+    int _a2;
+    int _b2;
+    int _c2;
+    int _d2;
+  } TestStruct;
 
   /* Как это работает? */
   TestStruct *foo = malloc(sizeof(TestStruct)); /* (void*)&heap[0]; */
@@ -46,14 +46,14 @@ int main(void) {
   foo->b = 1000000;
   foo->c = 1000000;
   foo->d = 1000000;
-	foo->a1 = 1000000;
+  foo->a1 = 1000000;
   foo->b1 = 1000000;
-	foo->c1 = 1000000;
-	foo->d1 = 1000000;
-	foo->a2 = 1000000;
-	foo->b2 = 1000000;
-	foo->c2 = 1000000;
-	foo->d2 = 1000000;
+  foo->c1 = 1000000;
+  foo->d1 = 1000000;
+  foo->a2 = 1000000;
+  foo->b2 = 1000000;
+  foo->c2 = 1000000;
+  foo->d2 = 1000000;
   foo->_a = 1000000;
   foo->_b = 1000000;
   foo->_c = 1000000;
@@ -66,7 +66,7 @@ int main(void) {
   foo->_b2 = 1000000;
   foo->_c2 = 1000000;
   foo->_d2 = 1000000;
-
+  
   printf("%d\n", foo->a);
   printf("%d\n", foo->b);
   printf("%d\n", foo->c);
