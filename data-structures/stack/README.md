@@ -1,5 +1,7 @@
 # Implementation of the stack data structure in C
 
+**Note:** The **stack** implementation is based on [**list**](https://github.com/SeyranGit/collection/tree/main/data-structures/list). Since recently [**list**](https://github.com/SeyranGit/collection/tree/main/data-structures/list) has been updated and therefore the current **stack** implementation will not work.
+
 ```text
  ____   _____    _      _____  _   __
 | ___| |_   _|  / \    /  ___|| | / /
