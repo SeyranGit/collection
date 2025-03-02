@@ -3,14 +3,14 @@
 #include "list/list.h"
 
 
-#define dename(type, pointer) *(type*)pointer
+#define deref(type, pointer) *(type*)pointer
 
 
 static void print_list_int(List *list) {
   Node *node = list->root_node;
   printf("[");
   while (node) {
-    printf("%d", dename(int, node->item));
+    printf("%d", deref(int, node->item));
     if (node->next_node) {
       printf(", ");
     }
@@ -63,8 +63,8 @@ static void test1() {
   obj_1.b = 10;
   numbers.append(&numbers, &obj_0);
   numbers.append(&numbers, &obj_1);
-  obj_0 = dename(Object, numbers.get(&numbers, 0));
-  obj_1 = dename(Object, numbers.get(&numbers, 1));
+  obj_0 = deref(Object, numbers.get(&numbers, 0));
+  obj_1 = deref(Object, numbers.get(&numbers, 1));
   printf("0: %d, 1: %d\n", obj_0.a, obj_0.b);
   printf("0: %d, 1: %d\n", obj_1.a, obj_1.b);
 }
@@ -85,7 +85,7 @@ int main(void) {
   print_list_int(&numbers);
   numbers.insert(&numbers, 0, &d);
   print_list_int(&numbers);
-  printf("Item: %d\n", dename(int, numbers.get(&numbers, 1)));
+  printf("Item: %d\n", deref(int, numbers.get(&numbers, 1)));
   test0(&numbers);
   test1();
   return 0;
