@@ -21,7 +21,7 @@ static void print_list_int(List *list) {
 }
 
 
-static void *cagv(int num) {
+static void *cagp(int num) {
   int *num_ptr = malloc(sizeof(num));
   *num_ptr = num;
   return num_ptr;
@@ -33,13 +33,13 @@ static void test0(List *list) {
   clear_list(list);
   print_list_int(list);
   for (int32 i = 0; i < 20000000; i++) {
-    list->append(list, cagv(i));
+    list->append(list, cagp(i));
   }
   puts("[OK]");
   clear_list(list);
   puts("[CLEAR]");
   for (int32 i = 0; i < 20; i++) {
-    list->append(list, cagv(i));
+    list->append(list, cagp(i));
   }
   list->insert(list, (uint32)0, &a);
   list->insert(list, list->len, &a);
