@@ -7,14 +7,14 @@
 #define LIST_CACHE(list) ((list)->cache.last_node)
 
 
-NORETURN static void
-exit_and_clear_list(List* list) {
+NORETURN
+static void exit_and_clear_list(List* list) {
   clear_list(list);
   exit(EXIT_FAILURE);
 }
 
 
-static Node *create_node(int32 item) {
+static Node *create_node(ItemType item) {
   Node *node = malloc(sizeof(Node));
   if (!node) {
     fprintf(stderr, "Memory allocation failed\n");
@@ -26,7 +26,7 @@ static Node *create_node(int32 item) {
 }
 
 
-static error_code append_impl(List *list, int32 item) {
+static error_code append_impl(List *list, ItemType item) {
   if (!list->cache.last_node || list->len == 0) {
     LIST_CACHE(list) = &(list->root_node);
     while (*(LIST_CACHE(list))) {
@@ -46,7 +46,7 @@ static error_code append_impl(List *list, int32 item) {
 }
 
 
-static error_code insert_impl(List *list, uint32 index, int32 item) {
+static error_code insert_impl(List *list, uint32 index, ItemType item) {
   uint32 current_index = (uint32)1;
   Node *node = list->root_node;
   Node *temp_node = NULL;
@@ -81,7 +81,7 @@ static error_code insert_impl(List *list, uint32 index, int32 item) {
 }
 
 
-static int32 get_impl(List *list, uint32 index) {
+static ItemType get_impl(List *list, uint32 index) {
   Node *node;
   if (index >= list->len) {
     fprintf(stderr, "Exception: Index %u is out of range.\n", index);
@@ -153,16 +153,4 @@ List new_list(void) {
   list.insert = insert_impl;
   list.get = get_impl;
   return list;
-}
-
-
-void print_list(List *list) {
-  Node *node = list->root_node;
-  printf("[");
-  while (node) {
-    printf("%d", node->item);
-    if (node->next_node) printf(", ");
-    node = node->next_node;
-  }
-  printf("]\n");
 }

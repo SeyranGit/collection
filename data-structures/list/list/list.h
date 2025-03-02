@@ -2,7 +2,9 @@
 #define LIST_H
 
 
-#ifndef __GNUC__
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 202311L
+  #define NORETURN [[noreturn]]
+#elif !defined(__GNUC__)
   #define NORETURN __attribute__((noreturn))
 #else
   #define NORETURN
@@ -13,9 +15,8 @@ typedef char int8;
 typedef int int32;
 typedef unsigned char uint8;
 typedef unsigned int uint32;
-
-
 typedef int8 error_code;
+typedef void *ItemType;
 
 
 #define SUCCESSFULLY (int8)0
@@ -23,7 +24,7 @@ typedef int8 error_code;
 
 
 typedef struct node {
-  int32 item;
+  ItemType item;
   struct node *next_node;
 } Node;
 
@@ -39,10 +40,10 @@ typedef struct list {
   Cache cache;
   uint32 len;
 
-  int32 (*get)(struct list *list, uint32 index);
-  error_code (*append)(struct list *list, int32 item);
+  ItemType (*get)(struct list *list, uint32 index);
+  error_code (*append)(struct list *list, ItemType item);
   error_code (*remove)(struct list *list, uint32 index);
-  error_code (*insert)(struct list *list, uint32 index, int32 item);
+  error_code (*insert)(struct list *list, uint32 index, ItemType item);
 } List;
 
 
