@@ -23,21 +23,22 @@
 
 int main(void) {
   List numbers = new_list(); 
-  numbers.append(&numbers, 10);
-  numbers.append(&numbers, 20);
-  numbers.append(&numbers, 30);
-
-  print_list(&numbers);
+  int a = 10;
+  int b = 20;
+  int c = 30;
+  int d = 22;
+  
+  numbers.append(&numbers, &a);
+  numbers.append(&numbers, &b);
+  numbers.append(&numbers, &c);
+  print_list_int(&numbers);
   numbers.remove(&numbers, 1);
-  print_list(&numbers);
-  numbers.insert(&numbers, 0, 22);
-  print_list(&numbers);
-  printf("Item: %d\n", numbers.get(&numbers, 1));
-  clear_list(&numbers);
-
+  print_list_int(&numbers);
+  numbers.insert(&numbers, 0, &d);
+  print_list_int(&numbers);
+  printf("Item: %d\n", *(int*)numbers.get(&numbers, 1));
   return 0;
 }
-
 ```
 
 ## Output

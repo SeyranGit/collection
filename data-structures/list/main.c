@@ -49,7 +49,7 @@ static void test0(List *list) {
 }
 
 
-static void test1() {
+static void test1(void) {
   List numbers = new_list();
   typedef struct {
     int a;
