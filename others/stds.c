@@ -16,6 +16,7 @@ int add(int one, ...) {
  
 int main(void) {
   static_assert(1, "Hello");
+  auto name = "Hello";
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 202311L
   static nullptr_t name = nullptr;
