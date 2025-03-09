@@ -135,10 +135,7 @@ static List tokenize(string code) {
       }
       if (token_name != SPACE) {
         token = malloc(sizeof(struct Token));
-        char buff[2] = { 
-          code[i],
-          '\0'
-        };
+        char buff[2] = { code[i], '\0' };
         token->token = token_name;
         token->value = heap_string(buff);
         tokens.append(&tokens, token);
