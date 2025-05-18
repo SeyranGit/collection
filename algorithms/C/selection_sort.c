@@ -20,7 +20,9 @@ static void selection_sort(int *array, ui32 len) {
         smallest = j;
       }
     }
-    swap(array, i, smallest);
+    if (smallest != i) {
+      swap(array, i, smallest);
+    }
   }
 }
 
